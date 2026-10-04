@@ -1,1 +1,0 @@
-# SEAL_education_lockdown
