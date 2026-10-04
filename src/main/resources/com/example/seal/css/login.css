@@ -1,0 +1,176 @@
+/* ==================================================
+   SEAL - Login
+   Warm, low-distraction examination interface
+   ================================================== */
+
+
+/* ---------- PAGE ---------- */
+
+.root {
+    -fx-background-color: #FFFEF7;
+}
+
+
+/* ---------- BRANDING ---------- */
+
+.brand-title {
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #75851C;
+}
+
+.brand-caption {
+    -fx-font-size: 11px;
+    -fx-text-fill: #6B705C;
+}
+
+
+/* ---------- LOGIN HEADING ---------- */
+
+.login-title {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #293018;
+}
+
+.login-subtitle {
+    -fx-font-size: 14px;
+    -fx-text-fill: #6B705C;
+}
+
+
+/* ---------- INPUT FIELDS ---------- */
+
+.login-field {
+    -fx-pref-height: 42px;
+    -fx-font-size: 14px;
+
+    -fx-background-color: #FFFDF4;
+
+    -fx-border-color: #DDDCCB;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+
+    -fx-padding: 0 12px;
+
+    -fx-prompt-text-fill: #9B9B8A;
+}
+
+.login-field:focused {
+    -fx-border-color: #A3B72D;
+    -fx-background-color: #FFFFFF;
+}
+
+
+/* ---------- STUDENT / TEACHER SELECTOR ---------- */
+
+.role-selector {
+    -fx-background-color: #FFFDF4;
+
+    -fx-border-color: #DDDCCB;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+
+    -fx-padding: 10px 28px;
+
+    -fx-text-fill: #5F6452;
+    -fx-font-weight: bold;
+
+    -fx-cursor: hand;
+}
+
+
+/* Hide standard RadioButton circle */
+
+.role-selector > .radio {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+.role-selector > .radio > .dot {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+
+/* Hover */
+
+.role-selector:hover {
+    -fx-background-color: #F7F7E8;
+    -fx-border-color: #BCC681;
+}
+
+
+/* Selected */
+
+.role-selector:selected {
+    -fx-background-color: #F2F6D7;
+    -fx-border-color: #A3B72D;
+    -fx-text-fill: #667515;
+}
+
+
+/* Selected + hover */
+
+.role-selector:selected:hover {
+    -fx-background-color: #EAF0C1;
+    -fx-border-color: #8FA123;
+}
+
+
+/* ---------- PRIMARY LOGIN BUTTON ---------- */
+
+.login-button {
+    -fx-background-color: #A3B72D;
+    -fx-text-fill: #1F2608;
+
+    -fx-font-weight: bold;
+
+    -fx-background-radius: 7px;
+
+    -fx-padding: 10px 24px;
+
+    -fx-cursor: hand;
+}
+
+.login-button:hover {
+    -fx-background-color: #95A828;
+}
+
+.login-button:pressed {
+    -fx-background-color: #83931F;
+}
+
+
+/* ---------- CLEAR BUTTON ---------- */
+
+.clear-button {
+    -fx-background-color: #F1F0E5;
+    -fx-text-fill: #4B5040;
+
+    -fx-border-color: #DDDCCB;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+
+    -fx-padding: 10px 22px;
+
+    -fx-cursor: hand;
+}
+
+.clear-button:hover {
+    -fx-background-color: #E8E7D9;
+}
+
+
+/* ---------- GENERIC FORM LABELS ---------- */
+
+.form-label {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #424738;
+}
+
+.error-message{
+    -fx-text-fill : #B42318;
+    -fx-font-size: 13px;
+}

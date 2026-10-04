@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.seal.controller.teacher.DashboardController"
+      spacing="25">
+        <padding>
+            <Insets top="30"
+                    right="35"
+                    bottom="30"
+                    left="35"/>
+        </padding>
+
+      <HBox>
+          <VBox spacing="4">
+              <Label text="Dashboard"
+                     styleClass="page-title"/>
+              <Label text="Overview of your examination"
+              styleClass="page-subtitle"/>
+          </VBox>
+
+          <Region HBox.hgrow="ALWAYS"/>
+          <Button text="+ Create Exam"
+                  styleClass="primary-button"
+          onAction="#createExam"/>
+      </HBox>
+
+      <HBox spacing="18"
+            fillHeight="true">
+          <VBox spacing ="6"
+                HBox.hgrow="ALWAYS"
+                maxWidth="Infinity"
+                styleClass="stat-card">
+              <Label text="0"
+                     styleClass="stat-number"/>
+              <Label text="Total Exams"
+                     styleClass="stat-label"/>
+          </VBox>
+
+          <VBox spacing="6"
+                HBox.hgrow="ALWAYS"
+                maxWidth="Infinity"
+                styleClass="stat-card">
+              <Label text="0"
+                     styleClass="stat-number"/>
+              <Label text="Published"
+                     styleClass="stat-label"/>
+          </VBox>
+
+          <VBox spacing="6"
+                HBox.hgrow="ALWAYS"
+                maxWidth="Infinity"
+                styleClass="stat-card">
+              <Label text="0"
+                     styleClass="stat-number"/>
+              <Label text="Candidates"
+                     styleClass="stat-label"/>
+          </VBox>
+
+      </HBox>
+    <VBox spacing="12"
+          VBox.vgrow="ALWAYS">
+
+        <Label text="Recent Examinations"
+               styleClass="section-title"/>
+
+        <VBox alignment="CENTER"
+              VBox.vgrow="ALWAYS"
+              styleClass="empty-state">
+
+            <Label text="No examinations created yet."
+                   styleClass="empty-title"/>
+
+            <Label text="Create your first examination to get started."
+                   styleClass="page-subtitle"/>
+
+        </VBox>
+
+    </VBox>
+</VBox>

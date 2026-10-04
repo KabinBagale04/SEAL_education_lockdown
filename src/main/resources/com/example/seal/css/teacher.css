@@ -1,0 +1,350 @@
+/*teacher panel ko background*/
+.teacher-shell{
+    -fx-background-color: #fffef7;
+}
+
+.teacher-header{
+    -fx-background-color: #FFFDF4;
+    -fx-border-color: transparent transparent #E4E3D5 transparent;
+    -fx-border-width: 0 0 1 0;
+}
+
+.teacher-brand{
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #75851C;
+}
+
+.teacher-role {
+    -fx-font-size: 13px;
+    -fx-text-fill: #6B705C;
+}
+/*the sidebar toggle wala*/
+.teacher-sidebar {
+    -fx-background-color: #F8F8EB;
+
+    -fx-border-color: transparent #E4E3D5 transparent transparent;
+    -fx-border-width: 0 1 0 0;
+}
+/*the three buttons dashbard, result and */
+.nav-button {
+    -fx-background-color: transparent;
+
+    -fx-text-fill: #4B5040;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+
+    -fx-alignment: CENTER_LEFT;
+
+    -fx-pref-height: 42px;
+    -fx-max-width: Infinity;
+    -fx-padding: 0 15px;
+
+    -fx-background-radius: 7px;
+
+    -fx-background-radius: 7px;
+    -fx-cursor: hand;
+}
+
+.nav-button:hover {
+    -fx-background-color: #EFF2D5;
+    -fx-text-fill: #687718;
+}
+
+.nav-button:selected {
+    -fx-background-color: #EAF0C1;
+    -fx-text-fill: #687718;
+}
+
+.logout-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #555A49;
+
+    -fx-border-color: #D7D6C7;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+
+    -fx-padding: 8px 15px;
+    -fx-cursor: hand;
+}
+
+.logout-button:hover {
+    -fx-background-color: #F1F0E5;
+}
+
+.teacher-content {
+    -fx-background-color: #FFFEF7;
+}
+/*the three hyphen for toogle of sidebar*/
+.menu-button{
+    -fx-background-color: transparent;
+
+    -fx-text-fill: #687718;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+
+    -fx-pref-width: 42px;
+    -fx-pref-height: 42px;
+
+    -fx-background-radius: 7px;
+
+    -fx-cursor: hand;
+}
+
+.menu-button:hover {
+    -fx-background-color: #EAF0C1;
+}
+
+/*below this is for the central layout of teacher dashboard*/
+.page-title{
+    -fx-font-size:26px;
+    -fx-font-weight:bold;
+    -fx-text-fill: #293018;
+}
+.page-subtitle{
+    -fx-font-size:13px;
+    -fx-text-fill: #747966;
+}
+.section-title{
+    -fx-font-size:17px;
+    -fx-font-weight:bold;
+    -fx-text-fill:#363B2C;
+}
+
+.primary-button{
+    -fx-background-color: #A3B72D;
+    -fx-text-fill: #1F2608;
+    -fx-font-weight: bold;
+
+    -fx-background-radius: 7px;
+
+    -fx-padding: 10px 18px;
+
+    -fx-cursor: hand;
+}
+
+.primary-button:hover {
+    -fx-background-color: #95A828;
+}
+
+.question-type-box{
+    -fx-background-color: #FFFFFF;
+
+    -fx-border-color: #DDDCCB;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+
+    -fx-pref-height: 40px;
+}
+.question-type-box:focused {
+    -fx-border-color: #A3B72D;
+}
+/* DASHBOARD CARDS */
+
+.stat-card {
+    -fx-background-color: #FFFDF4;
+
+    -fx-border-color: #E3E2D3;
+    -fx-border-radius: 9px;
+    -fx-background-radius: 9px;
+
+    -fx-padding: 20px;
+}
+
+.stat-number {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #75851C;
+}
+
+.stat-label {
+    -fx-font-size: 13px;
+    -fx-text-fill: #6B705C;
+}
+
+
+/* EMPTY STATE */
+
+.empty-state {
+    -fx-background-color: #FFFDF4;
+
+    -fx-border-color: #DDDCCB;
+    -fx-border-radius: 9px;
+    -fx-background-radius: 9px;
+
+    -fx-padding: 35px;
+}
+
+.empty-title {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #4A503C;
+}
+
+/*this section is for the exam section bg's */
+
+.exam-scroll {
+    -fx-background-color: transparent;
+    -fx-background: #FFFEF7;
+}
+
+.exam-scroll > .viewport {
+    -fx-background-color: #FFFEF7;
+}
+
+.create-exam-page {
+    -fx-background-color: #FFFEF7;
+}
+
+.form-card {
+    -fx-background-color: #FFFDF4;
+
+    -fx-border-color: #E3E2D3;
+    -fx-border-radius: 9px;
+    -fx-background-radius: 9px;
+
+    -fx-padding: 22px;
+}
+
+.form-label {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #424738;
+}
+
+.form-field {
+    -fx-pref-height: 40px;
+
+    -fx-background-color: #FFFFFF;
+
+    -fx-border-color: #DDDCCB;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+
+    -fx-padding: 0 10px;
+
+    -fx-font-size: 13px;
+}
+
+.form-field:focused {
+    -fx-border-color: #A3B72D;
+}
+
+.form-text-area {
+    -fx-background-color: #FFFFFF;
+
+    -fx-border-color: #DDDCCB;
+    -fx-border-radius: 6px;
+
+    -fx-font-size: 13px;
+}
+
+.form-text-area:focused {
+    -fx-border-color: #A3B72D;
+}
+
+.field-hint {
+    -fx-text-fill: #747966;
+    -fx-font-size: 13px;
+}
+
+.secondary-action-button {
+    -fx-background-color: #F2F4DF;
+    -fx-text-fill: #687718;
+
+    -fx-border-color: #CED59B;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+
+    -fx-font-weight: bold;
+
+    -fx-padding: 9px 16px;
+
+    -fx-cursor: hand;
+}
+
+.secondary-action-button:hover {
+    -fx-background-color: #E8EDC5;
+}
+
+.question-empty-state {
+    -fx-background-color: #FAFAF0;
+
+    -fx-border-color: #DDDCCB;
+    -fx-border-style: dashed;
+    -fx-border-radius: 7px;
+
+    -fx-background-radius: 7px;
+}
+
+.exam-scroll .scroll-bar:vertical{
+    -fx-pref-width: 10px;
+    -fx-background-color: transparent;
+}
+.exam-scroll .scroll-bar:vertical .track {
+    -fx-background-color: transparent;
+}
+
+.exam-scroll .scroll-bar:vertical .thumb {
+    -fx-background-color: #C9CDA8;
+    -fx-background-radius: 5px;
+}
+
+.exam-scroll .scroll-bar:vertical .thumb:hover {
+    -fx-background-color: #AAB26D;
+}
+/*this is for exam creating section after clocking the create exam button*/
+.question-card{
+    -fx-background-color: #FFFDF4;
+
+    -fx-border-color: #DDDCCB;
+    -fx-border-radius: 9px;
+    -fx-background-radius: 9px;
+}
+.question-number {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #41472F;
+}
+
+.delete-button {
+    -fx-background-color: #FFF1EE;
+    -fx-text-fill: #A33A2B;
+
+    -fx-border-color: #E8C4BD;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+
+    -fx-padding: 8px 14px;
+
+    -fx-cursor: hand;
+}
+
+.delete-button:hover {
+    -fx-background-color: #FBE1DC;
+}
+
+.cancel-button{
+    -fx-background-color: #F3F2E8;
+    -fx-text-fill: #555A49;
+
+    -fx-border-color: #D7D6C7;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+
+    -fx-font-weight: bold;
+    -fx-padding: 10px 18px;
+
+    -fx-cursor: hand;
+}
+
+.cancel-button:hover {
+    -fx-background-color: #E8E7D9;
+}
+
+/*error message during publish*/
+.form-error {
+    -fx-text-fill: #B42318;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
