@@ -31,8 +31,38 @@ jobs:
         run: mvnw.cmd clean package
 
 
+      - name: Copy runtime dependencies
+        shell: cmd
+        run: mvnw.cmd dependency:copy-dependencies -DincludeScope=runtime -DoutputDirectory=target\\package-input
+
+
+      - name: Prepare package input
+        shell: cmd
+        run: copy target\\SEAL-1.0-SNAPSHOT.jar target\\package-input\\
+
+
+      - name: Create Windows app image
+        shell: cmd
+        run: >
+          jpackage
+          --type app-image
+          --name SEAL
+          --input target\\package-input
+          --main-jar SEAL-1.0-SNAPSHOT.jar
+          --main-class com.example.seal.Main
+          --dest target\\dist
+          --java-options "-Dfile.encoding=UTF-8"
+
+
       - name: Upload Maven build
         uses: actions/upload-artifact@v4
         with:
           name: seal-windows-build
           path: target/
+
+
+      - name: Upload Windows app
+        uses: actions/upload-artifact@v4
+        with:
+          name: SEAL-Windows-App
+          path: target/dist/SEAL/
