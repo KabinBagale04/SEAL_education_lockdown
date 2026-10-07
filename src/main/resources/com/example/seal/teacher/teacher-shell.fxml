@@ -30,7 +30,8 @@
                 <Label text = "Teacher"
                 styleClass="teacher-role"/>
                 <Button text="Logout"
-                styleClass="logout-button"/>
+                styleClass="logout-button"
+                onAction="#handleLogout"/>
             </HBox>
         </top>
 

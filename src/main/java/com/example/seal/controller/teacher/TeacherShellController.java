@@ -1,6 +1,8 @@
 package com.example.seal.controller.teacher;
 
+import com.example.seal.Navigator;
 import com.example.seal.navigation.TeacherNavigator;
+import com.example.seal.session.UserSession;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -75,5 +77,11 @@ public class TeacherShellController {
         sidebar.setMinWidth(width);
         sidebar.setPrefWidth(width);
         sidebar.setMaxWidth(width);
+    }
+
+    @FXML
+    private void handleLogout(){
+        UserSession.clear();
+        Navigator.goTo("login");
     }
 }

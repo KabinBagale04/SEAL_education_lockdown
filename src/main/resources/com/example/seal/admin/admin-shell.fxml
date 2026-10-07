@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            prefHeight="400.0" prefWidth="600.0"
+            fx:controller="com.example.seal.controller.admin.AdminShellController"
+            styleClass="admin-shell"
+            stylesheets="@../css/admin.css">
+
+    <top>
+        <HBox alignment="CENTER_LEFT"
+        spacing="15"
+        styleClass="admin-header">
+            <padding>
+                <Insets top="18" right="30" bottom="18" left="30"/>
+            </padding>
+            <Label text="SEAL"
+            styleClass="admin-brand"/>
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <Label text="Administrator"
+            styleClass="admin-role"/>
+            <Button text="Logout"
+                    styleClass="logout-button"
+            onAction="#handleLogout"/>
+        </HBox>
+    </top>
+
+    <left>
+        <VBox prefWidth="210"
+              maxWidth="210"
+              minWidth="75"
+        spacing="10"
+        fx:id="sidebar"
+        styleClass="admin-sidebar">
+            <padding>
+                <Insets top="25" right="15" bottom="25" left="15"/>
+            </padding>
+            <Button text="☰"
+                    maxWidth="Infinity"
+                    styleClass="menu-button"
+                    onAction="#toggleSidebar"/>
+            <Button text="Users"
+            maxWidth="Infinity"
+            fx:id="userButton"
+            onAction="#showUsers"
+            styleClass="admin-nav-button"/>
+            <Button text="+Add user"
+            maxWidth="Infinity"
+            fx:id="addUserButton"
+            onAction="#showAddUser"
+            styleClass="admin-nav-button"/>
+        </VBox>
+    </left>
+
+    <center>
+        <StackPane fx:id="contentArea"
+        styleClass="admin-content"/>
+
+
+    </center>
+</BorderPane>

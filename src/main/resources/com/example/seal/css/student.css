@@ -1,0 +1,35 @@
+.student-root {
+    -fx-background-color: #FFFEF7;
+    -fx-font-family: "System";
+    -fx-font-size: 15px;
+    -fx-text-fill: #293018;
+}
+.student-root .label, .student-root .check-box, .student-root .radio-button { -fx-text-fill: #293018; }
+.student-root .student-header { -fx-padding: 20 32; -fx-background-color: #FFFDF4; -fx-border-color: transparent transparent #DDDCCB transparent; }
+.student-root .student-footer { -fx-padding: 16 32; -fx-background-color: #FFFDF4; -fx-border-color: #DDDCCB transparent transparent transparent; }
+.student-root .brand { -fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #75851C; }
+.student-root .page { -fx-padding: 32; }
+.student-root .page-title { -fx-font-size: 28px; -fx-font-weight: bold; }
+.student-root .section-title { -fx-font-size: 20px; -fx-font-weight: bold; }
+.student-root .secondary { -fx-text-fill: #6B705C; }
+.student-root .error { -fx-text-fill: #B42318; }
+.student-root .scroll-pane, .student-root .scroll-pane > .viewport { -fx-background-color: #FFFEF7; }
+.student-root .scroll-pane { -fx-background-insets: 0; -fx-padding: 0; }
+.student-root .text-field, .student-root .text-area {
+    -fx-background-color: #FFFDF4; -fx-text-fill: #293018; -fx-border-color: #DDDCCB;
+    -fx-border-radius: 4; -fx-background-radius: 4; -fx-padding: 10;
+    -fx-highlight-fill: #F2F6D7; -fx-highlight-text-fill: #293018;
+}
+.student-root .text-area .content { -fx-background-color: #FFFDF4; }
+.student-root .button { -fx-padding: 10 18; -fx-background-color: #FFFDF4; -fx-text-fill: #293018; -fx-border-color: #DDDCCB; -fx-border-radius: 4; -fx-background-radius: 4; -fx-cursor: hand; }
+.student-root .button:hover { -fx-background-color: #F2F6D7; }
+.student-root .primary { -fx-background-color: #A3B72D; -fx-border-color: #75851C; -fx-font-weight: bold; }
+.student-root .primary:hover { -fx-background-color: #F2F6D7; }
+.student-root .button:focused, .student-root .text-field:focused, .student-root .text-area:focused { -fx-border-color: #75851C; -fx-border-width: 2; }
+.student-root .radio-button, .student-root .check-box { -fx-padding: 8 0; }
+.student-root .radio-button:selected .dot, .student-root .check-box:selected .mark { -fx-background-color: #75851C; }
+.student-root .timer { -fx-font-family: "Monospaced"; -fx-font-size: 20px; -fx-font-weight: bold; }
+.student-root .question-number { -fx-min-width: 44; -fx-pref-width: 44; -fx-max-width: 44; -fx-min-height: 44; -fx-pref-height: 44; -fx-max-height: 44; -fx-padding: 0; }
+.student-root .answered { -fx-background-color: #F2F6D7; }
+.student-root .current { -fx-border-color: #75851C; -fx-border-width: 2; -fx-font-weight: bold; }
+.student-root .confirmation { -fx-background-color: #F2F6D7; -fx-padding: 14; }

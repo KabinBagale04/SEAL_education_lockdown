@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane fx:id="root" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.seal.controller.student.ExaminationController" styleClass="student-root" stylesheets="@../css/student.css">
+    <top><VBox spacing="12" styleClass="student-header">
+        <HBox spacing="20" alignment="CENTER_LEFT"><Label text="SEAL" styleClass="brand"/><Label fx:id="mode"/><Region HBox.hgrow="ALWAYS"/><Label text="Time remaining"/><Label fx:id="timer" text="00:00:00" styleClass="timer" minWidth="115"/></HBox>
+        <Label fx:id="title" styleClass="section-title" wrapText="true"/>
+    </VBox></top>
+    <center><ScrollPane fitToWidth="true"><content><VBox styleClass="page" spacing="18">
+        <Label fx:id="progress" styleClass="secondary"/>
+        <FlowPane fx:id="navigation" hgap="8" vgap="8"/>
+        <Separator/>
+        <Label fx:id="questionTitle" styleClass="secondary"/>
+        <Label fx:id="questionText" styleClass="section-title" wrapText="true" maxWidth="Infinity"/>
+        <VBox fx:id="answerArea" spacing="14"/>
+        <HBox spacing="12"><Button fx:id="previous" text="Previous" onAction="#previous"/><Button fx:id="next" text="Next" onAction="#next"/></HBox>
+    </VBox></content></ScrollPane></center>
+    <bottom><VBox styleClass="student-footer" spacing="10">
+        <Label fx:id="message" styleClass="error" wrapText="true" maxWidth="Infinity"/>
+        <VBox fx:id="confirmation" spacing="10" visible="false" managed="false" styleClass="confirmation">
+            <Label fx:id="confirmationText" wrapText="true"/>
+            <HBox spacing="12"><Button fx:id="cancel" text="Keep working" onAction="#cancelSubmit"/><Button fx:id="confirm" text="Confirm submission" onAction="#confirmSubmit" styleClass="primary"/></HBox>
+        </VBox>
+        <HBox alignment="CENTER_RIGHT"><Button fx:id="submit" text="Submit exam" onAction="#requestSubmit" styleClass="primary"/></HBox>
+    </VBox></bottom>
+</BorderPane>

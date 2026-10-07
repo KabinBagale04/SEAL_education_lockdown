@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.seal.controller.student.AcknowledgementController" styleClass="student-root" stylesheets="@../css/student.css">
+    <top><HBox styleClass="student-header" spacing="20" alignment="CENTER_LEFT"><Label text="SEAL" styleClass="brand"/><Label fx:id="mode"/></HBox></top>
+    <center><ScrollPane fitToWidth="true"><content><VBox styleClass="page" spacing="20">
+        <Label text="Submission acknowledged" styleClass="page-title"/>
+        <Label fx:id="acknowledgement" wrapText="true" maxWidth="Infinity"/>
+        <Label text="Submission reference" styleClass="secondary"/>
+        <Label fx:id="reference" wrapText="true"/>
+        <Label fx:id="message" styleClass="error" wrapText="true"/>
+        <Button text="Return to exam access" onAction="#returnToAccess" styleClass="primary"/>
+    </VBox></content></ScrollPane></center>
+</BorderPane>

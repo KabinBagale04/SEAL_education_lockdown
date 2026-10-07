@@ -12,8 +12,8 @@ public class Main extends Application {
 
         FXMLLoader loader = new FXMLLoader(
                 Main.class.getResource(
-                       // "/com/example/seal/login.fxml"//  use this to transfer control to login page
-                       "/com/example/seal/teacher/teacher-shell.fxml"
+                        "/com/example/seal/login.fxml"//  use this to transfer control to login page
+                       //"/com/example/seal/teacher/teacher-shell.fxml"
                 )
         );
 

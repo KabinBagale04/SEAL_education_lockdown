@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
-<StackPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            prefHeight="400.0" prefWidth="600.0">
-
-    <Label text = "Student home"/>
-</StackPane>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.seal.controller.student.AccessController" styleClass="student-root" stylesheets="@css/student.css">
+    <top><HBox styleClass="student-header" spacing="20" alignment="CENTER_LEFT"><Label text="SEAL" styleClass="brand"/><Label fx:id="mode"/></HBox></top>
+    <center><ScrollPane fitToWidth="true"><content><VBox styleClass="page" spacing="20" alignment="TOP_CENTER">
+        <VBox spacing="16" maxWidth="520">
+            <Label text="Exam access" styleClass="page-title"/>
+            <VBox fx:id="fields" spacing="8">
+                <Label text="Registration number" labelFor="${registration}"/><TextField fx:id="registration" onAction="#validate"/>
+                <Label text="Symbol number" labelFor="${symbol}"/><TextField fx:id="symbol" onAction="#validate"/>
+                <Label text="Exam access code" labelFor="${code}"/><TextField fx:id="code" onAction="#validate"/>
+            </VBox>
+            <Label fx:id="message" styleClass="error" wrapText="true" minHeight="44"/>
+            <Button fx:id="continueButton" text="Continue" onAction="#validate" styleClass="primary" maxWidth="Infinity"/>
+        </VBox>
+    </VBox></content></ScrollPane></center>
+</BorderPane>

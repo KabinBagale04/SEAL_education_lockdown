@@ -8,8 +8,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.StackPane ?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.PasswordField?>
 <BorderPane xmlns="http://javafx.com/javafx"
@@ -42,9 +40,10 @@
                 <Label text="Secured Examination Access and Lockdown"
                 styleClass="Login-subtitle"/>
 
+                <!--
                 <HBox alignment = "CENTER"
                 spacing = "20">
-                    <!--Radio button vaneko group ma hunxa and only one can be selected so java ma radio button banako jastai ho-->
+                    Radio button vaneko group ma hunxa and only one can be selected so java ma radio button banako jastai ho
 
                     <RadioButton fx:id="studentRadio"
                                  text = "Student"
@@ -63,6 +62,8 @@
 
                                  />
                 </HBox>
+            -->
+
                 <VBox>
                     <Label text = "Username"/>
                     <TextField promptText="Enter your username"

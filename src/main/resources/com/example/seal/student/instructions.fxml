@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.seal.controller.student.InstructionsController" styleClass="student-root" stylesheets="@../css/student.css">
+    <top><HBox styleClass="student-header" spacing="20" alignment="CENTER_LEFT"><Label text="SEAL" styleClass="brand"/><Label fx:id="mode"/></HBox></top>
+    <center><ScrollPane fitToWidth="true"><content><VBox styleClass="page" spacing="18">
+        <Label text="Examination instructions" styleClass="section-title"/>
+        <Label fx:id="title" styleClass="page-title" wrapText="true"/>
+        <Label fx:id="details" styleClass="secondary"/>
+        <Separator/>
+        <Label fx:id="instructions" wrapText="true" maxWidth="Infinity"/>
+        <CheckBox fx:id="accepted" text="I have read the instructions and am ready to start." wrapText="true"/>
+        <Label fx:id="message" styleClass="error" wrapText="true" minHeight="44"/>
+        <HBox spacing="12"><Button fx:id="back" text="Back" onAction="#back"/><Button fx:id="start" text="Start exam" onAction="#start" styleClass="primary"/></HBox>
+    </VBox></content></ScrollPane></center>
+</BorderPane>
