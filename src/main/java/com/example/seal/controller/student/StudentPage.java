@@ -27,11 +27,12 @@ public abstract class StudentPage {
         Task<T> task = new Task<>() { protected T call() throws Exception { return action.call(); } };
         task.setOnSucceeded(event -> {
             busy = false; setBusy.accept(false);
-            if (Objects.equals(token, UserSession.getToken())) success.accept(task.getValue());
+            if (Objects.equals(token, UserSession.getToken()) && message.getScene() != null)
+                success.accept(task.getValue());
         });
         task.setOnFailed(event -> {
             busy = false; setBusy.accept(false);
-            if (!Objects.equals(token, UserSession.getToken())) return;
+            if (!Objects.equals(token, UserSession.getToken()) || message.getScene() == null) return;
             Throwable error = task.getException();
             message.setText(error instanceof IllegalArgumentException || error instanceof IllegalStateException
                     ? error.getMessage() : "Unable to reach the exam service. Your answers are retained; please retry.");

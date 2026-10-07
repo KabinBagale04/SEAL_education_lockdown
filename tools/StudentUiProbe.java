@@ -65,6 +65,18 @@ public final class StudentUiProbe {
                 scene = new Scene(new StackPane(), 1100, 700);
                 stage = new Stage(); stage.setScene(scene); stage.show();
                 Navigator.setScene(scene); Navigator.goTo("student-home");
+                scene.getRoot().applyCss(); scene.getRoot().layout();
+                check(scene.lookup("#registration") == null, "Login lands on dashboard, not access form");
+                check(scene.lookup("#pastPapers") != null, "Past papers future tile");
+                check(((ToggleButton)scene.lookup("#dashboardButton")).isSelected(), "Dashboard navigation selected");
+                return null;
+            });
+            capture("dashboard", 1100, 700);
+            capture("dashboard-small", 900, 600);
+            fx(() -> {
+                ((ToggleButton)scene.lookup("#examsButton")).fire();
+                check(((ToggleButton)scene.lookup("#examsButton")).isSelected(), "Exams navigation selected");
+                check(scene.lookup("#pastPapers") == null, "Dashboard replaced by exam access");
                 button("continueButton").fire();
                 check(((Label) scene.lookup("#message")).getText().contains("Enter your"), "Required fields");
                 ((TextField) scene.lookup("#registration")).setText("REG-TEST");

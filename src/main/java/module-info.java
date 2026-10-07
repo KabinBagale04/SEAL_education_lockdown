@@ -11,4 +11,6 @@ module com.example.seal {
     opens com.example.seal.controller.teacher to javafx.fxml;
     opens com.example.seal.controller.admin to javafx.fxml;
     opens com.example.seal.controller.student to javafx.fxml;
+    opens com.example.seal.model to com.fasterxml.jackson.databind;
+    opens com.example.seal.student.model to com.fasterxml.jackson.databind;
 }

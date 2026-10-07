@@ -80,8 +80,5 @@ public class TeacherShellController {
     }
 
     @FXML
-    private void handleLogout(){
-        UserSession.clear();
-        Navigator.goTo("login");
-    }
+private void handleLogout(){ com.example.seal.service.SessionActions.logout(); }
 }

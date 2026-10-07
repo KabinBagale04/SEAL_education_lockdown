@@ -1,6 +1,11 @@
+@import "controls.css";
+
 /*teacher panel ko background*/
 .teacher-shell{
     -fx-background-color: #fffef7;
+    -fx-font-family: "System";
+    -fx-font-size: 14px;
+    -fx-text-fill: #293018;
 }
 
 .teacher-header{
@@ -29,6 +34,7 @@
 /*the three buttons dashbard, result and */
 .nav-button {
     -fx-background-color: transparent;
+    -fx-border-color: transparent;
 
     -fx-text-fill: #4B5040;
     -fx-font-size: 14px;
@@ -78,6 +84,8 @@
 /*the three hyphen for toogle of sidebar*/
 .menu-button{
     -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-padding: 0;
 
     -fx-text-fill: #687718;
     -fx-font-size: 20px;

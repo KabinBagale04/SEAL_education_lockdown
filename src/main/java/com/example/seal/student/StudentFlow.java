@@ -10,7 +10,7 @@ import java.util.UUID;
 /** One in-memory attempt. Authentication remains owned by UserSession. */
 public final class StudentFlow {
     private static final StudentFlow INSTANCE = new StudentFlow();
-    public final ExamService service = Boolean.getBoolean("seal.student.demo") ? new DemoExamService() : new PendingExamService();
+    public final ExamService service = Boolean.getBoolean("seal.student.demo") ? new DemoExamService() : new RestExamService();
     public ExamAccess access;
     public Attempt attempt;
     public Receipt receipt;
@@ -38,8 +38,11 @@ public final class StudentFlow {
         startRequestId = UUID.randomUUID().toString();
         submitRequestId = UUID.randomUUID().toString();
     }
-    public void go(String page) { Navigator.goTo("student/" + page); }
-    public void returnToAccess() { reset(); Navigator.goTo("student-home"); }
+    public void go(String page) {
+        if ("results".equals(page)) com.example.seal.navigation.StudentNavigator.open("results");
+        else Navigator.goTo("student/" + page);
+    }
+    public void returnToAccess() { reset(); com.example.seal.navigation.StudentNavigator.open("access"); }
     public Submission submission() {
         return new Submission(attempt.id(), submitRequestId, attempt.questions().stream()
                 .map(q -> answers.getOrDefault(q.id(), new Answer(q.id(), null, ""))).toList());

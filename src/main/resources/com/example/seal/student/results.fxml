@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox fx:id="root" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.seal.controller.student.StudentResultsController" styleClass="page" spacing="18">
+    <HBox alignment="CENTER_LEFT" spacing="16">
+        <Label text="My results" styleClass="page-title"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="Refresh" onAction="#refresh"/>
+    </HBox>
+    <TableView fx:id="table" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="titleColumn" text="Examination" minWidth="160" prefWidth="300"/>
+            <TableColumn fx:id="statusColumn" text="Status" minWidth="170" prefWidth="210"/>
+            <TableColumn fx:id="scoreColumn" text="Score" minWidth="110" prefWidth="150"/>
+        </columns>
+    </TableView>
+    <Label fx:id="message" wrapText="true" styleClass="error"/>
+</VBox>

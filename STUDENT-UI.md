@@ -1,119 +1,83 @@
-# SEAL Student Client
+# SEAL Client MVP
 
-This implementation adds only the JavaFX student flow. Existing login, role routing,
-Navigator, teacher/admin pages, and backend authentication remain unchanged.
+## Working Flow
 
-## Complete Files
+Existing Navigator and role routing are retained; pages reuse one Scene, not new Stages.
 
-```text
-src/main/java/com/example/seal/
-  controller/student/
-    StudentPage.java
-    AccessController.java
-    InstructionsController.java
-    ExaminationController.java
-    AcknowledgementController.java
-  student/
-    StudentFlow.java
-    model/ExamDtos.java
-    service/ExamService.java
-    service/PendingExamService.java
-    service/DemoExamService.java
-src/main/resources/com/example/seal/
-  student-home.fxml
-  student/instructions.fxml
-  student/examination.fxml
-  student/acknowledgement.fxml
-  css/student.css
-src/main/java/module-info.java
-tools/StudentUiProbe.java
-tools/check-student-ui.sh
-```
+- Admin: add teacher/student, load users, activate/deactivate selected accounts.
+- Teacher: Dashboard/Exams lists actual exams; create/save draft, edit draft, publish,
+  read access code, close; Results lists attempts and allows manual text grading.
+- Student: login -> Dashboard, with Dashboard / Exams / Results sidebar navigation.
+  Past papers is a clearly labelled Coming soon tile, not a working paper archive.
+  Exams opens the registration number, symbol number and access-code form.
+  Valid access -> Instructions -> Examination -> confirmation -> acknowledgement.
+  The timed exam remains full-screen. Return to dashboard or My results after submission.
+  Results displays only the student's submitted/graded summaries from the backend.
 
-The existing module descriptor gains only:
+The question editor supports MCQs and text questions. Answers survive question navigation
+in memory. The exam timer uses server-provided expiry; timeout freezes and submits answers.
+Failed submission retains the payload for an identical retry.
 
-```java
-opens com.example.seal.controller.student to javafx.fxml;
-```
+## Client Boundaries
 
-No Maven dependencies are added. Java source targets release 21 and uses JavaFX 21.
+ApiClient is shared HTTPS/JSON transport using the existing UserSession bearer token.
+AuthService preserves the existing login contract; logout invalidates the server token.
+FxRequest runs admin/teacher/result calls outside the JavaFX thread.
+TeacherExamService handles exam authoring and grading API calls.
+student.service.ExamService remains the student boundary.
+RestExamService is now the default implementation; it maps actual server responses into
+the student DTOs. DemoExamService is isolated and enabled only by an explicit flag.
 
-## Navigation
+FXML/controller/CSS separation is retained. Student controllers have no hardcoded exam
+fixtures. Student DTOs contain no answer keys. No direct PostgreSQL connection exists.
 
-Existing STUDENT login already calls `Navigator.goTo("student-home")`.
-That resource is now Exam Access. Successful validation leads to
-`student/instructions`, Start leads to `student/examination`, and an acknowledged
-submission leads to `student/acknowledgement`. Return resets attempt data and opens
-`student-home`. All transitions use the existing Navigator and Scene; the production
-student code creates no Stage. Submit confirmation is inline on the exam page.
+StudentShellController and StudentNavigator manage pages inside the student workspace.
+Navigator.goTo still owns application-level transitions and reuses the same Scene.
+teacher.css and student.css import controls.css for consistent tables, dropdowns,
+scrollbars and buttons. The student sidebar shows the active page.
 
-StudentFlow holds one attempt and its answers across pages, separated from UserSession.
-The access code and registration fields are passed to the service; controllers contain
-no exam fixtures. Question DTOs deliberately contain no correct answer or reference answer.
-The timer uses the service-provided expiry instant; Timeline only schedules clock updates,
-with no visual animations. Question changes preserve responses in memory. Expiry locks
-editing and attempts submission. A failed submission retains a frozen payload and request
-ID for retry, since a lost response does not establish whether the server accepted it.
+## Run
 
-## Backend Integration Pending
+Start the backend first, then from this client repository:
 
-The inspected server currently exposes auth/admin-user functionality, not student exam
-endpoints. Normal operation therefore uses PendingExamService, which reports unavailable
-access instead of returning fictional success. The following are client contracts, not
-claims about existing REST endpoints:
+    ./mvnw javafx:run
 
-| Method | Input | Expected response |
-| --- | --- | --- |
-| validateAccess | Registration number, symbol number, access code, existing bearer token | Exam access ID, title, instructions, duration, question count |
-| startExam | Access ID, stable request ID, existing bearer token | Attempt ID, expiry instant, student-safe questions and options |
-| submit | Attempt ID, stable request ID, answers, existing bearer token | Submission reference and acknowledgement message |
+Default API URL: http://localhost:8080 (local development only).
+For a deployed backend, use HTTPS:
 
-Implement ExamService using the project's HTTP/JSON conventions when actual routes and
-wire DTOs are available, then replace the PendingExamService selection in StudentFlow.
-Use the existing token in Authorization: Bearer; HTTPS for remote traffic. Calls already
-run in JavaFX Tasks. Map service failures to safe user-facing messages; do not expose raw
-server response bodies. Configure finite connection/request timeouts. Agree retry
-idempotency with the server for start and submit. The server must enforce exam access,
-ownership and time limits; the display timer is not a security boundary. Confirm server
-time/clock offset handling before production timed exams. No database access is added.
+    JAVA_TOOL_OPTIONS='-Dseal.api.baseUrl=https://your-server.example' ./mvnw javafx:run
 
-An acknowledgement does not imply a grade. Results/grades need an agreed backend contract.
-There is no persistence or resume after application exit yet; answers are in memory only.
-The UI adds no OS lockdown and does not prevent application closure.
+Demo mode is optional, not the default:
 
-## Explicit Demo Mode
+    JAVA_TOOL_OPTIONS='-Dseal.student.demo=true' ./mvnw javafx:run
 
-Set `-Dseal.student.demo=true` in the application JVM options to select DemoExamService.
-For a Maven launch from the client root:
+Demo access code is DEMO with nonblank registration/symbol fields.
+Demo receipts explicitly identify local data. My results still uses the real backend.
 
-```sh
-JAVA_TOOL_OPTIONS='-Dseal.student.demo=true' ./mvnw javafx:run
-```
+## Presentation Demonstration
 
-Use the existing authentication and a student account. Enter any nonblank registration
-and symbol numbers, and the exact access code `DEMO`. Every page displays a demo label.
-Demo answers stay local and receipts explicitly say nothing was saved to the server.
-All fixture questions live in DemoExamService. Omit the flag to return to the pending
-integration boundary. The UI probe's simulated session is test-only, not an app login route.
+1. Admin signs in, creates a teacher/student and checks the Users list.
+2. Teacher creates an MCQ + text exam, saves it, edits the draft and publishes.
+3. Student logs in, enters registration/symbol/access code, accepts instructions,
+   answers both questions and submits. Acknowledgement shows pending text grading.
+4. Teacher opens Results, selects the attempt and awards text marks.
+5. Student opens My results to see the final score.
+6. Admin deactivates the student; the old token no longer authorizes requests.
 
-## Future Updates
+Study the path: FXML event -> controller -> client service -> REST controller ->
+backend service -> repository -> database -> response DTO -> JavaFX update.
 
-Student dashboard and access to older question papers are intentionally deferred.
-They need a teacher-authorized published-paper/history contract and must not reveal active
-exam questions or answer keys. No dashboard page, productivity sidebar, or archive endpoint
-is implemented in this increment.
+## Verification and Limits
 
-## Verification
+sh tools/check-mvp-ui.sh runs the real FXML + REST test against the server's isolated
+MvpFixture on port 18081. See EXAM-BACKEND.md in the server repository for fixture startup.
+It covers admin users, teacher draft/edit/publish, student access/submit, manual grading,
+student results, logout and deactivation. Screenshots are written under /tmp.
+sh tools/check-student-ui.sh separately covers the isolated student demo/timeout flow.
 
-The local smoke probe loads actual FXML, uses the existing Navigator, exercises required
-fields, instruction acceptance, MCQ/text retention, submit/cancel confirmation,
-acknowledgement, automatic expiry submission, repeat request IDs, and session isolation.
-It also captures page snapshots at 1100x700 and 900x600. It requires a graphical JavaFX
-runtime. Runtime verification on this machine uses installed JDK 26 with release-21
-compilation; execution on JDK 21 still needs confirmation.
-No backend or live database integration is tested because student endpoints are absent.
-
-Run `sh tools/check-student-ui.sh` from the client root with desktop access. It compiles
-against release 21 and runs the FXML probe on the module path, checking the actual module
-descriptor. The first Maven dependency download requires network access; the script
-assumes dependencies are already cached and runs Maven offline.
+The student dashboard is implemented; older question papers remain a future update.
+Registration/symbol information is collected, not institutionally verified.
+Answers have no durable local recovery after app exit. Closing an exam blocks new
+submissions. No OS-level lockdown or monitoring is implemented.
+Tests use H2 and JDK 26 with release-21 compilation; real PostgreSQL deployment and
+runtime execution on JDK 21 still need verification.

@@ -57,32 +57,7 @@ public class AdminShellController {
     }
 
     @FXML
-    private void handleLogout(){
-        String token = UserSession.getToken();
-
-        Task<Void> logoutTask = new Task<Void>() {
-            @Override
-            protected Void call() throws Exception{
-                authService.logout(token);
-                return null;
-            }
-        };
-
-        logoutTask.setOnFailed(event -> {
-            logoutTask.getException().printStackTrace();;
-            UserSession.clear();
-            Navigator.goTo("login");
-        });
-
-        logoutTask.setOnSucceeded(event -> {
-            UserSession.clear();
-            Navigator.goTo("login");
-        });
-
-        Thread thread = new Thread(logoutTask);
-        thread.setDaemon(true);
-        thread.start();
-    }
+private void handleLogout(){ com.example.seal.service.SessionActions.logout(); }
 
     @FXML
     private void showAddUser(){

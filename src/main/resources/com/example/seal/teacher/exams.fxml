@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
-<StackPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-
-            prefHeight="400.0" prefWidth="600.0">
-
-    <Label text ="Examination"/>
-</StackPane>
+<?import javafx.scene.control.*?><?import javafx.scene.layout.*?><?import javafx.geometry.Insets?>
+<VBox fx:id="root" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.seal.controller.teacher.ExamsController" spacing="16">
+ <padding><Insets top="24" right="24" bottom="24" left="24"/></padding>
+ <Label text="Examinations" styleClass="page-title"/>
+ <FlowPane hgap="10" vgap="10"><Button text="Create exam" styleClass="primary-button" onAction="#create"/><Button text="Refresh" onAction="#refresh"/><Button fx:id="editButton" text="Edit draft" onAction="#edit"/><Button fx:id="publishButton" text="Publish" onAction="#publish"/><Button fx:id="closeButton" text="Close exam" styleClass="delete-button" onAction="#close"/></FlowPane>
+ <TableView fx:id="table" VBox.vgrow="ALWAYS" >
+  <columns><TableColumn fx:id="titleColumn" text="Examination" minWidth="160" prefWidth="240"/><TableColumn fx:id="subjectColumn" text="Subject" minWidth="100"/><TableColumn fx:id="statusColumn" text="Status" minWidth="110"/><TableColumn fx:id="codeColumn" text="Access code" minWidth="120"/></columns>
+ </TableView>
+ <Label fx:id="message" wrapText="true" styleClass="form-error"/>
+</VBox>

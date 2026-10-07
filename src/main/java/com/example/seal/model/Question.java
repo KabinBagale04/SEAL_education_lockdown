@@ -7,6 +7,7 @@ public class Question {
     private int marks;
 
     private List<String> options;
+    @com.fasterxml.jackson.annotation.JsonAlias("correctOptionIndex")
     private Integer correctOption;
 
     private String referenceAnswer;

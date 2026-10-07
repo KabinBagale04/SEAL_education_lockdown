@@ -4,6 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Exam {
+    private Long id;
+    private String accessCode;
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+    public String getAccessCode() { return accessCode; }
+    public void setAccessCode(String accessCode) { this.accessCode = accessCode; }
+    @Override public String toString() { return title + " (" + status + ")"; }
     private String title;
     private String subject;
     private String subjectCode;

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<ScrollPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.seal.controller.student.AccessController"
+            fitToWidth="true" hbarPolicy="NEVER">
+    <content>
+        <VBox styleClass="page" spacing="20">
+            <Label text="Exams" styleClass="page-title"/>
+            <Label fx:id="mode" styleClass="secondary"/>
+            <VBox spacing="16" maxWidth="520">
+                <Label text="Exam access" styleClass="section-title"/>
+                <VBox fx:id="fields" spacing="8">
+                    <Label text="Registration number" labelFor="${registration}"/><TextField fx:id="registration" onAction="#validate"/>
+                    <Label text="Symbol number" labelFor="${symbol}"/><TextField fx:id="symbol" onAction="#validate"/>
+                    <Label text="Exam access code" labelFor="${code}"/><TextField fx:id="code" onAction="#validate"/>
+                </VBox>
+                <Label fx:id="message" styleClass="error" wrapText="true" minHeight="44"/>
+                <Button fx:id="continueButton" text="Continue" onAction="#validate" styleClass="primary" maxWidth="Infinity"/>
+            </VBox>
+        </VBox>
+    </content>
+</ScrollPane>

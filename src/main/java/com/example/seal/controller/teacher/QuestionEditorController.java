@@ -80,7 +80,7 @@ public class QuestionEditorController {
                         change->{
                             String newText = change.getControlNewText();
 
-                            if(newText.matches("\\d{0,2}")){
+                            if(newText.matches("\\d{0,4}")){
                                 return change;
                             }
                             return null;
@@ -103,6 +103,7 @@ public class QuestionEditorController {
         correctAnswerGroup = new ToggleGroup();
 
         optionARadio = new RadioButton("A");
+        optionARadio.setToggleGroup(correctAnswerGroup);
         optionBRadio = new RadioButton("B");
         optionCRadio = new RadioButton("C");
         optionDRadio = new RadioButton("D");
@@ -211,6 +212,17 @@ public class QuestionEditorController {
         this.onDelete = onDelete;
     }
 
+    public void setQuestion(Question question) {
+        questionTypeBox.setValue(question.getType() == QuestionType.MCQ ? "Multiple Choice" : "Text Answers");
+        questionTextArea.setText(question.getQuestionText());
+        marksField.setText(Integer.toString(question.getMarks()));
+        if (question.getType() == QuestionType.MCQ) {
+            TextField[] fields = {optionAField, optionBField, optionCField, optionDField};
+            RadioButton[] buttons = {optionARadio, optionBRadio, optionCRadio, optionDRadio};
+            for (int i=0; i<4; i++) fields[i].setText(question.getOptions().get(i));
+            if (question.getCorrectOption() != null) buttons[question.getCorrectOption()].setSelected(true);
+        } else referenceAnswerArea.setText(question.getReferenceAnswer());
+    }
     public Question getQuestion(){
         Question question = new Question();
 
@@ -270,8 +282,8 @@ public class QuestionEditorController {
                 marksField.getText()
         );
 
-        if (marks <= 0) {
-            return "Marks must be greater than 0.";
+        if (marks <= 0 || marks > 1000) {
+            return "Marks must be between 1 and 1000.";
         }
 
 

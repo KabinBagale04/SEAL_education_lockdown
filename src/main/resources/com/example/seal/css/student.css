@@ -1,3 +1,5 @@
+@import "controls.css";
+
 .student-root {
     -fx-background-color: #FFFEF7;
     -fx-font-family: "System";
@@ -33,3 +35,21 @@
 .student-root .answered { -fx-background-color: #F2F6D7; }
 .student-root .current { -fx-border-color: #75851C; -fx-border-width: 2; -fx-font-weight: bold; }
 .student-root .confirmation { -fx-background-color: #F2F6D7; -fx-padding: 14; }
+.student-root .student-sidebar {
+    -fx-background-color: #FFFDF4; -fx-padding: 24 12;
+    -fx-border-color: transparent #DDDCCB transparent transparent;
+}
+.student-root .sidebar-caption { -fx-font-size: 11px; -fx-text-fill: #6B705C; -fx-padding: 0 12 12 12; }
+.student-root .student-nav {
+    -fx-background-color: transparent; -fx-text-fill: #293018; -fx-font-weight: bold;
+    -fx-alignment: CENTER_LEFT; -fx-padding: 0 12; -fx-pref-height: 44;
+    -fx-border-color: transparent; -fx-border-radius: 4; -fx-background-radius: 4; -fx-cursor: hand;
+}
+.student-root .student-nav:hover { -fx-background-color: #F7F9E9; }
+.student-root .student-nav:selected { -fx-background-color: #F2F6D7; -fx-text-fill: #75851C; }
+.student-root .student-nav:focused { -fx-border-color: #75851C; }
+.student-root .dashboard-tile {
+    -fx-background-color: #FFFDF4; -fx-border-color: #DDDCCB;
+    -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 20;
+}
+.student-root .future-label { -fx-text-fill: #6B705C; -fx-font-size: 13px; }

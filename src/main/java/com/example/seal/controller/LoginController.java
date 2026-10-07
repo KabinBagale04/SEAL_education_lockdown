@@ -85,8 +85,8 @@ public class LoginController {
         });
 
         loginTask.setOnFailed(event -> {
-            showError("Unable to connect to the seal server.");
-            loginTask.getException().printStackTrace();
+            showError(loginTask.getException() instanceof IllegalStateException
+                    ? loginTask.getException().getMessage() : "Unable to connect to the SEAL server.");
 
         });
         Thread thread = new Thread(loginTask);

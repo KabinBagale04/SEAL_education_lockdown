@@ -9,6 +9,7 @@
         <Label text="Submission reference" styleClass="secondary"/>
         <Label fx:id="reference" wrapText="true"/>
         <Label fx:id="message" styleClass="error" wrapText="true"/>
-        <Button text="Return to exam access" onAction="#returnToAccess" styleClass="primary"/>
+        <Button text="Return to dashboard" onAction="#dashboard" styleClass="primary"/>
+        <Button text="My results" onAction="#results"/>
     </VBox></content></ScrollPane></center>
 </BorderPane>
