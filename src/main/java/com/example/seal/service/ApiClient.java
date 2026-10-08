@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.*;
 import java.net.URI;
 import java.net.http.*;
 import java.time.Duration;
+import java.io.IOException;
+import javax.net.ssl.SSLException;
 
 /** Shared transport only; authentication still uses the existing opaque session token. */
 public final class ApiClient {
@@ -20,7 +22,19 @@ public final class ApiClient {
                 .header("Content-Type", "application/json");
         if (token != null) builder.header("Authorization", "Bearer " + token);
         builder.method(method, body == null ? HttpRequest.BodyPublishers.noBody() : HttpRequest.BodyPublishers.ofString(JSON.writeValueAsString(body)));
-        HttpResponse<String> response = HTTP.send(builder.build(), HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> response;
+        try {
+            response = HTTP.send(builder.build(), HttpResponse.BodyHandlers.ofString());
+        } catch (SSLException error) {
+            throw new IllegalStateException(ConnectionErrors.message(error), error);
+        } catch (HttpTimeoutException error) {
+            throw new IllegalStateException("Server request timed out. The server may be starting. Check the latest saved state before retrying a save or submission.", error);
+        } catch (InterruptedException error) {
+            Thread.currentThread().interrupt();
+            throw new IllegalStateException("Server request was interrupted. Check the latest saved state before retrying.", error);
+        } catch (IOException error) {
+            throw new IllegalStateException("Cannot reach the SEAL server. Check your connection. For a save or submission, check its status before retrying.", error);
+        }
         if (response.statusCode() < 200 || response.statusCode() >= 300) {
             String message = "Request failed (HTTP " + response.statusCode() + ").";
             try {

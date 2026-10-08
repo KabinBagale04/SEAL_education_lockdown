@@ -48,10 +48,19 @@ jobs:
           --type app-image
           --name SEAL
           --app-version 1.0.0
+          --add-modules jdk.crypto.ec
+          --jlink-options "--strip-debug --no-man-pages --no-header-files"
           --module-path target\\package-input
           --module com.example.seal/com.example.seal.Main
           --dest target\\dist
           --java-options "-Dfile.encoding=UTF-8"
+
+
+      - name: Verify packaged runtime HTTPS
+        shell: pwsh
+        run: |
+          & "target\dist\SEAL\runtime\bin\java.exe" --module-path "target\dist\SEAL\app" --module com.example.seal/com.example.seal.ConnectionCheck
+          if ($LASTEXITCODE -ne 0) { throw "Packaged runtime HTTPS check failed." }
 
 
       - name: Add Windows launch helpers
@@ -75,12 +84,22 @@ jobs:
           '@ | Set-Content -Path "target\dist\SEAL\Run SEAL Debug.bat" -Encoding ASCII
 
           @'
+          @echo off
+          cd /d "%~dp0"
+          "%~dp0runtime\bin\java.exe" --module-path "%~dp0app" --module com.example.seal/com.example.seal.ConnectionCheck > "%TEMP%\SEAL-connection-check.txt" 2>&1
+          type "%TEMP%\SEAL-connection-check.txt"
+          echo Diagnostic output: %TEMP%\SEAL-connection-check.txt
+          pause
+          '@ | Set-Content -Path "target\dist\SEAL\Check Server Connection.bat" -Encoding ASCII
+
+          @'
           SEAL Windows App
 
           1. Extract the downloaded zip first.
           2. Open the extracted SEAL folder.
           3. Double-click "Run SEAL.bat" or "SEAL.exe".
           4. If nothing opens, double-click "Run SEAL Debug.bat" and send the console error to Kabin.
+          5. For connection errors, run "Check Server Connection.bat" and share its output. It does not send login credentials.
 
           Keep the Render backend awake before logging in. The first login can be slow on the free tier.
           '@ | Set-Content -Path "target\dist\SEAL\README-FIRST.txt" -Encoding ASCII
