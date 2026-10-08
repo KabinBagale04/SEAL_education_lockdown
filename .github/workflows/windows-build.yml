@@ -47,11 +47,42 @@ jobs:
           jpackage
           --type app-image
           --name SEAL
-          --input target\\package-input
-          --main-jar SEAL-1.0-SNAPSHOT.jar
-          --main-class com.example.seal.Main
+          --module-path target\\package-input
+          --module com.example.seal/com.example.seal.Main
           --dest target\\dist
           --java-options "-Dfile.encoding=UTF-8"
+
+
+      - name: Add Windows launch helpers
+        shell: pwsh
+        run: |
+          @'
+          @echo off
+          cd /d "%~dp0"
+          start "" "%~dp0SEAL.exe"
+          '@ | Set-Content -Path "target\dist\SEAL\Run SEAL.bat" -Encoding ASCII
+
+          @'
+          @echo off
+          cd /d "%~dp0"
+          echo Starting SEAL in debug mode...
+          echo.
+          "%~dp0runtime\bin\java.exe" --module-path "%~dp0app" --module com.example.seal/com.example.seal.Main
+          echo.
+          echo If SEAL did not open, copy the error above and send it to Kabin.
+          pause
+          '@ | Set-Content -Path "target\dist\SEAL\Run SEAL Debug.bat" -Encoding ASCII
+
+          @'
+          SEAL Windows App
+
+          1. Extract the downloaded zip first.
+          2. Open the extracted SEAL folder.
+          3. Double-click "Run SEAL.bat" or "SEAL.exe".
+          4. If nothing opens, double-click "Run SEAL Debug.bat" and send the console error to Kabin.
+
+          Keep the Render backend awake before logging in. The first login can be slow on the free tier.
+          '@ | Set-Content -Path "target\dist\SEAL\README-FIRST.txt" -Encoding ASCII
 
 
       - name: Upload Maven build
