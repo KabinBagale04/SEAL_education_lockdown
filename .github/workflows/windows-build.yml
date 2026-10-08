@@ -47,6 +47,7 @@ jobs:
           jpackage
           --type app-image
           --name SEAL
+          --app-version 1.0.0
           --module-path target\\package-input
           --module com.example.seal/com.example.seal.Main
           --dest target\\dist
