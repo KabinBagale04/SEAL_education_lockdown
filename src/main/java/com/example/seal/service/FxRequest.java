@@ -23,8 +23,15 @@ public final class FxRequest {
         task.setOnFailed(e -> {
             view.setDisable(false);
             if (Objects.equals(token, UserSession.getToken()))
-                message.setText(task.getException() instanceof IllegalStateException ? task.getException().getMessage() : "Cannot reach the server. Please retry.");
+                message.setText(errorMessage(task.getException()));
         });
         Thread thread = new Thread(task, "seal-client-request"); thread.setDaemon(true); thread.start();
+    }
+
+    private static String errorMessage(Throwable error) {
+        if (error instanceof IllegalStateException) return error.getMessage();
+        String detail = error.getMessage();
+        if (detail == null || detail.isBlank()) detail = error.getClass().getSimpleName();
+        return "Cannot complete server request: " + detail;
     }
 }

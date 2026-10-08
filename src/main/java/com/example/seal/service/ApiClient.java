@@ -8,10 +8,15 @@ import java.time.Duration;
 /** Shared transport only; authentication still uses the existing opaque session token. */
 public final class ApiClient {
     public static final ObjectMapper JSON = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-    private static final HttpClient HTTP = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(20)).build();
+    private static final HttpClient HTTP = HttpClient.newBuilder()
+            .connectTimeout(Duration.ofSeconds(20))
+            .version(HttpClient.Version.HTTP_1_1)
+            .build();
     private static final String BASE = System.getProperty("seal.api.baseUrl", "https://seal-server.onrender.com").replaceAll("/+$", "");
     public JsonNode request(String method, String path, Object body, String token) throws Exception {
-        HttpRequest.Builder builder = HttpRequest.newBuilder(URI.create(BASE + path)).timeout(Duration.ofSeconds(90))
+        HttpRequest.Builder builder = HttpRequest.newBuilder(URI.create(BASE + path))
+                .timeout(Duration.ofSeconds(90))
+                .version(HttpClient.Version.HTTP_1_1)
                 .header("Content-Type", "application/json");
         if (token != null) builder.header("Authorization", "Bearer " + token);
         builder.method(method, body == null ? HttpRequest.BodyPublishers.noBody() : HttpRequest.BodyPublishers.ofString(JSON.writeValueAsString(body)));
