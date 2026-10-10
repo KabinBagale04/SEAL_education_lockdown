@@ -29,8 +29,8 @@
     styleClass="page-subtitle"/>
 
     <HBox spacing="12">
-        <Button text="Refresh" onAction="#refresh"/>
-        <Button fx:id="statusButton" text="Deactivate" onAction="#changeStatus"/>
+        <Button text="Refresh" onAction="#refresh" styleClass="primary-button"/>
+        <Button fx:id="statusButton" text="Deactivate" onAction="#changeStatus" styleClass="primary-button"/>
     </HBox>
     <TableView fx:id="usersTable"
                VBox.vgrow="ALWAYS"
